@@ -1,4 +1,4 @@
-package com.example.locationtest;
+package com.example.locationdemo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,14 +14,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
+
+
+import com.example.locationtest.R;
+
 import android.R.integer;
 import android.animation.AnimatorSet.Builder;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.CursorJoiner.Result;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.audiofx.BassBoost.Settings;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -64,7 +71,9 @@ public class MainActivity extends Activity {
 		}
 		else{
 			Toast.makeText(this, "No location provider to use", Toast.LENGTH_LONG).show();
-			return;
+			Intent intent=new Intent(android.provider.Settings.ACTION_SETTINGS);
+	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	        startActivity(intent);
 		}
 		Location location=locationManager.getLastKnownLocation(provider);
 		if(location!=null){
